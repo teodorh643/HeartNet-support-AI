@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeartNet - Chat with AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Bubble Chatbot -->
+<script>
+(function(){
+  if(!window.chatbase || window.chatbase("getState")!=="initialized") {
+    window.chatbase = (...args) => {
+      if (!window.chatbase.q) window.chatbase.q = [];
+      window.chatbase.q.push(args);
+    };
+    window.chatbase = new Proxy(window.chatbase, {
+      get(target, prop) {
+        if (prop === "q") return target.q;
+        return (...args) => target(prop, ...args);
+      }
+    });
+  }
+
+  const onLoad = function() {
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "SMnPHi9GOuTggMwfvyMKl";
+    script.setAttribute("chatbot-id", "SMnPHi9GOuTggMwfvyMKl");
+    script.setAttribute("domain", window.location.hostname);
+    document.body.appendChild(script);
+  };
+
+  if (document.readyState === "complete") {
+    onLoad();
+  } else {
+    window.addEventListener("load", onLoad);
+  }
+})();
+</script>
+
+</body>
+</html>
